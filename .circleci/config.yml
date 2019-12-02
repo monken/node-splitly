@@ -1,0 +1,26 @@
+version: 2
+jobs:
+  build-latest: &default
+    docker:
+      - image: circleci/node:12
+    steps:
+      - checkout
+      - run: yarn
+      - run: yarn test
+      - run: cd benchmark && yarn && cd - && yarn benchmark
+  build-10:
+    <<: *default
+    docker:
+      - image: circleci/node:10
+  build-8:
+    <<: *default
+    docker:
+      - image: circleci/node:8
+
+workflows:
+  version: 2
+  versions:
+    jobs:
+      - build-latest
+      - build-10
+      - build-8

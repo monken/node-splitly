@@ -1,7 +1,7 @@
 {
   "name": "splitstream",
   "version": "1.0.0",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "license": "Apache-2.0",
   "devDependencies": {
     "@types/chai": "^4.2.5",

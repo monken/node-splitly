@@ -6,6 +6,7 @@ jobs:
     steps:
       - checkout
       - run: yarn
+      - run: yarn lint
       - run: yarn test
       - run: cd benchmark && yarn && cd - && yarn benchmark
   build-10:

@@ -40,6 +40,7 @@ const stream = splitstream.createStream({
   // split on zero-byte delimited lines, must be provided as Buffer
   newlineChar: Buffer.from('\0'),
 });
+
 ```
 
 # Benchmark

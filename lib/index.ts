@@ -83,6 +83,6 @@ export class SplitStream extends Duplex {
   }
 }
 
-export function createStream(args?: Options) {
-  return new SplitStream(args);
+export function createStream(args?: Options, duplexArgs: DuplexOptions = {}) {
+  return new SplitStream(args, duplexArgs);
 }

@@ -1,5 +1,6 @@
+![Build Status](https://img.shields.io/circleci/build/github/monken/node-splitstream)
 ![Apache License](https://img.shields.io/badge/license-Apache--2.0-yellow)
-![Apache License](https://img.shields.io/badge/dependencies-0-blue)
+![Dependencies](https://img.shields.io/badge/dependencies-0-blue)
 
 # SplitStream
 

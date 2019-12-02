@@ -20,6 +20,8 @@ fs.createReadStream(file)
   });
 ```
 
+**Note:** Usage of the `data` event is not recommended in production code and should only be used for strictly synchronous/blocking code. Instead, pipe the output of the stream to another stream capabable of propagating back pressure (such as `process.stdout` or a stream that writes to a database or makes an API call).
+
 `splitstream` requires the newline character(s) to be defined as a Buffer, unlike other split stream implementations which also accept regular expressions. Additionally, the newline character is not truncated from the chunk passed to the `data` event. The default newline character is `\n`. If you want to split on `/\r?\n/` instead, keep the default newline character and `trim()` the chunk in the data callback.
 
 Internally, the streams maintains a buffer of lines that have been parsed but not yet consumed. The size of this buffer 

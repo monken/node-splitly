@@ -28,8 +28,8 @@ Internally, the streams maintains a buffer of lines that have been parsed but no
 
 ## createStream({ newlineChar: Buffer },  DuplexOptions )
 
-* `newlineChar` <Buffer> **Default:** `Buffer.from('\n')`
-* `DuplexOptions` <Object> **Default:** `{}` passed to `stream.Duplex` constructor
+* `newlineChar` \<Buffer> **Default:** `Buffer.from('\n')`
+* `DuplexOptions` \<Object> **Default:** `{}` passed to `stream.Duplex` constructor
 
 ## Custom Newline Character
 

@@ -9,7 +9,7 @@ Split a stream on a new-line character and reassemble it into line-sized chunks.
 There are a number of alternatives our there, namely [split](https://github.com/dominictarr/split), [binary-split](https://github.com/maxogden/binary-split) and [split2](https://github.com/mcollina/split2). All of which are significantly slower than this implementation (~50% faster than `split2`, see [Benchmark](#benchmark)) and some have additional dependencies. SplitStream extends `stream.Duplex` instead of `stream.Transform` for greater control over memory pressure and speed.
 
 ``` js
-const splitstream = require('splitstream');
+const splitstream = require('split-stream');
 
 fs.createReadStream(file)
   .pipe(splitstream.createStream())
@@ -36,7 +36,7 @@ Internally, the streams maintains a buffer of lines that have been parsed but no
 ## Custom Newline Character
 
 ``` js
-const splitstream = require('splitstream');
+const splitstream = require('split-stream');
 
 const stream = splitstream.createStream({
   // split on zero-byte delimited lines, must be provided as Buffer

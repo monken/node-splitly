@@ -1,5 +1,5 @@
 {
-  "name": "splitstream",
+  "name": "split-stream",
   "version": "1.0.0",
   "main": "dist/index.js",
   "license": "Apache-2.0",
@@ -24,6 +24,10 @@
     "test": "mocha -r ts-node/register test/*.ts",
     "build": "tsc",
     "lint": "eslint lib/*.ts test/*.ts"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
   },
   "author": "Moritz Onken <onken@netcubed.de>",
   "homepage": "https://github.com/monken/node-splitstream#readme"

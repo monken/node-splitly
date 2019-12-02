@@ -1,0 +1,30 @@
+{
+  "name": "splitstream",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@types/chai": "^4.2.5",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.12.14",
+    "@typescript-eslint/parser": "^2.10.0",
+    "chai": "^4.2.0",
+    "eslint": "^6.7.2",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "mocha": "^6.2.2",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.2"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "benchmark": "ts-node benchmark",
+    "test": "mocha -r ts-node/register test/*.ts",
+    "build": "tsc",
+    "lint": "eslint lib/*.ts test/*.ts"
+  },
+  "author": "Moritz Onken <onken@netcubed.de>",
+  "homepage": "https://github.com/monken/splitstream#readme"
+}

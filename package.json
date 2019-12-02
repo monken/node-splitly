@@ -26,5 +26,5 @@
     "lint": "eslint lib/*.ts test/*.ts"
   },
   "author": "Moritz Onken <onken@netcubed.de>",
-  "homepage": "https://github.com/monken/splitstream#readme"
+  "homepage": "https://github.com/monken/node-splitstream#readme"
 }

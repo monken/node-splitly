@@ -10,7 +10,7 @@ interface Test {
   lines: Array<string>;
 }
 
-describe('splitstream', () => {
+describe('splitly', () => {
   describe('basic', () => {
     const tests = [{
       name: 'two lines',

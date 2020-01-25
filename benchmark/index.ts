@@ -2,9 +2,10 @@ const fs = require('fs');
 const path = require('path');
 const assert = require('assert').strict;
 
-const SplitStream = require('../lib');
+const Splitly = require('../lib');
 const byline = require('byline');
 const split2 = require('split2');
+const split = require('split');
 var binarySplit = require('binary-split');
 
 const hwm = 2 ** 19;
@@ -74,8 +75,9 @@ function bench(steps: Steps, count: number): Promise<void> {
 
 bench({
   '/dev/null': buildBenchmark(() => fs.createWriteStream('/dev/null')),
-  splitstream: buildBenchmark(() => SplitStream.createStream()),
   split2: buildBenchmark(() => split2()),
+  split: buildBenchmark(() => split()),
   'binary-split': buildBenchmark(() => binarySplit()),
+  splitly: buildBenchmark(() => Splitly.createStream()),
   byline: buildBenchmark(() => byline.createStream()),
 }, 200);

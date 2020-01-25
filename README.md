@@ -1,4 +1,4 @@
-![Build Status](https://img.shields.io/circleci/build/github/monken/node-splitly)
+[![Build Status](https://img.shields.io/circleci/build/github/monken/node-splitly)](https://app.circleci.com/github/monken/node-splitly/pipelines)
 ![Apache License](https://img.shields.io/badge/license-Apache--2.0-yellow)
 ![Dependencies](https://img.shields.io/badge/dependencies-0-blue)
 

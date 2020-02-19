@@ -49,7 +49,9 @@ describe('splitly', () => {
       newlineChar: Buffer.from('\n\n'),
     }];
 
-    tests.forEach(({ chunks, lines, name, newlineChar }: Test) => it(name, (done) => {
+    tests.forEach(({
+      chunks, lines, name, newlineChar,
+    }: Test) => it(name, (done) => {
       let processed = 0;
       const stream = createStream({
         newlineChar: newlineChar || Buffer.from('\n'),

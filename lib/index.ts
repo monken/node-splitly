@@ -6,13 +6,15 @@ interface Options {
 }
 
 export class SplitStream extends Duplex {
-  private _chunks: Array<Buffer>;
+  private _chunks: Buffer;
 
   private _outputBuffer: Array<Buffer | null>;
 
   private _writeCallback: Function | null;
 
   private _newlineChar: Buffer;
+
+  private _newlineCharLength: number;
 
   private _readableState!: {
     objectMode: boolean;
@@ -23,12 +25,14 @@ export class SplitStream extends Duplex {
   constructor({ newlineChar }: Options = {}, duplexArgs: DuplexOptions = {}) {
     super(duplexArgs);
 
-    this._chunks = [];
+    this._chunks = Buffer.alloc(0);
     this._outputBuffer = [];
 
     this._newlineChar = Buffer.isBuffer(newlineChar)
       ? newlineChar
       : Buffer.from('\n');
+
+    this._newlineCharLength = this._newlineChar.length;
 
     this._writeCallback = null;
 
@@ -37,23 +41,23 @@ export class SplitStream extends Duplex {
   }
 
   _write(chunk: Buffer, encoding: string, callback: Function): void {
-    let newlinePos = chunk.indexOf(this._newlineChar);
+    this._chunks = Buffer.concat([this._chunks, chunk]);
+    let newlinePos = this._chunks.indexOf(this._newlineChar);
     if (newlinePos === -1) {
-      this._chunks.push(chunk);
       callback();
       return;
     }
-    let currentChunk = chunk;
+    let currentChunk = this._chunks;
     while (newlinePos > -1) {
-      this._chunks.push(currentChunk.slice(0, newlinePos + 1));
-      const line = Buffer.concat(this._chunks);
+      this._chunks = currentChunk.slice(0, newlinePos + this._newlineCharLength);
+      const line = this._chunks;
       this._outputBuffer.push(line);
       if (this._readableState.needReadable) this._read();
-      currentChunk = currentChunk.slice(newlinePos + 1);
+      currentChunk = currentChunk.slice(newlinePos + this._newlineCharLength);
       newlinePos = currentChunk.indexOf(this._newlineChar);
-      this._chunks = [];
+      this._chunks = Buffer.alloc(0);
     }
-    if (currentChunk.length) this._chunks = [currentChunk];
+    if (currentChunk.length) this._chunks = currentChunk;
     this._writeCallback = callback;
   }
 
@@ -74,7 +78,7 @@ export class SplitStream extends Duplex {
 
   _final(callback: Function): void {
     if (this._chunks.length) {
-      const line = Buffer.concat(this._chunks);
+      const line = this._chunks;
       this._outputBuffer.push(line);
     }
     this._outputBuffer.push(null);

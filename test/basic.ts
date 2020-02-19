@@ -8,6 +8,7 @@ interface Test {
   name: string;
   chunks: Array<string | Buffer>;
   lines: Array<string>;
+  newlineChar?: Buffer;
 }
 
 describe('splitly', () => {
@@ -36,11 +37,23 @@ describe('splitly', () => {
       name: 'many lines',
       chunks: [Array.from({ length: 2000 }, (v, a) => `line ${a}\n`).join('')],
       lines: Array.from({ length: 2000 }, (v, a) => `line ${a}\n`),
+    }, {
+      name: '2-char newline with clean break',
+      chunks: ['foo\n\n', 'bar'],
+      lines: ['foo\n\n', 'bar'],
+      newlineChar: Buffer.from('\n\n'),
+    }, {
+      name: '2-char newline with dirty break',
+      chunks: ['foo\n', '\nbar'],
+      lines: ['foo\n\n', 'bar'],
+      newlineChar: Buffer.from('\n\n'),
     }];
 
-    tests.forEach(({ chunks, lines, name }: Test) => it(name, (done) => {
+    tests.forEach(({ chunks, lines, name, newlineChar }: Test) => it(name, (done) => {
       let processed = 0;
-      const stream = createStream();
+      const stream = createStream({
+        newlineChar: newlineChar || Buffer.from('\n'),
+      });
       stream.on('data', (chunk) => {
         expect(chunk.toString()).to.equal(lines[processed]);
         processed += 1;

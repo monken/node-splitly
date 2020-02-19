@@ -1,7 +1,7 @@
 {
   "name": "splitly",
   "description": "Split a stream on a new-line character and reassemble it into a stream of line-sized chunks. Zero dependencies with a focus on speed and simplicity.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/index.js",
   "license": "Apache-2.0",
   "devDependencies": {

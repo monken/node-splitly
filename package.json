@@ -6,7 +6,7 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "@types/chai": "^4.2.5",
-    "@types/mocha": "^5.2.7",
+    "@types/mocha": "^7.0.2",
     "@types/node": "^12.12.14",
     "@typescript-eslint/parser": "^2.10.0",
     "chai": "^4.2.0",

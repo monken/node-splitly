@@ -2,7 +2,7 @@ version: 2
 jobs:
   build-next: &default
     docker:
-      - image: circleci/node:13
+      - image: circleci/node:14
     steps:
       - checkout
       - run: yarn

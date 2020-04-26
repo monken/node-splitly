@@ -20,7 +20,7 @@ function str(length: number) {
 
 fs.writeFileSync(
   path.join(__dirname, 'input.txt'),
-  [Array.from({ length: 5000 }, () => str(Math.ceil(Math.random() * 5000))).join('\n')],
+  Array.from({ length: 5000 }, () => str(Math.ceil(Math.random() * 5000))).join('\n'),
 );
 
 function buildBenchmark(createStream: Function) {

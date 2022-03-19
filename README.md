@@ -24,8 +24,6 @@ fs.createReadStream(file)
 
 `splitly` requires the newline character(s) to be defined as a Buffer, unlike other split stream implementations which also accept regular expressions. Additionally, the newline character is not truncated from the chunk passed to the `data` event. The default newline character is `\n`. If you want to split on `/\r?\n/` instead, keep the default newline character and `trim()` the chunk in the data callback.
 
-Internally, the streams maintains a buffer of lines that have been parsed but not yet consumed. The size of this buffer 
-
 # API
 
 ## createStream({ newlineChar: Buffer },  DuplexOptions )
@@ -47,13 +45,13 @@ const stream = splitly.createStream({
 
 # Benchmark
 
-`/dev/null` is the raw performance of piping the test stream to `/dev/null`. This is the lower boundary of the performance that can be achieved. It also makes sure the file is in the OS file cache. See [./benchmark/index.js](./benchmark/index.ts) for details. Run under NodeJS v10.15.0.
+`/dev/null` is the raw performance of piping the test stream to `/dev/null`. This is the lower boundary of the performance that can be achieved. It also makes sure the file is in the OS file cache. See [./benchmark/index.js](./benchmark/index.ts) for details. Run under NodeJS v14.18.3.
 
 | name | time | stdev |
 | -- | -- | -- |
-| /dev/null | 3.22  | 1.47 |
-| **splitly** | **5.56**  | **4.39** |
-| split | 10.33 | 1.39 |
-| split2 | 10.75 | 1.54 |
-| binary-split | 12.97 | 2.14 |
-| byline | 13.38 | 11.99 |
+| /dev/null | 5.41 | 2.67 |
+| **splitly** | 10.35 | 4.91 |
+| split2 | 34.24 | 3.04 |
+| split | 34.71 | 4.78 |
+| byline | 39.55 | 13.72 |
+| binary-split | 46.55 | 9.22 |
